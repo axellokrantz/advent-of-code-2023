@@ -12,7 +12,6 @@ int main() {
 
     // TODO: Check if the item_to_check is in the packing_list and find its index
     // TODO: If the item is not in the list, keep item_index as -1
-
     auto it = find(packing_list.begin(), packing_list.end(), item_to_check);
     if(it != packing_list.end()){
         item_index = it - packing_list.begin();
