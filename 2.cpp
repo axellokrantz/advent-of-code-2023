@@ -9,9 +9,11 @@ int main() {
     vector<string> bag = {"t-shirt", "shorts", "sandals"};
 
     // TODO: Add "sunglasses" to our bag at the end
+    bag.push_back("sunglasses");
 
     // We realized we need "hat" right after "t-shirt", let's insert it at index 1
     // TODO: Insert "hat" into the bag at the position right after "t-shirt"
+    bag.insert(bag.begin() + 1, "hat");
 
     // Printing out our bag to see all items packed
     for (const string& item : bag) {
