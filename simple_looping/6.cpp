@@ -14,6 +14,7 @@ int solution(int n) {
     return count;
 }
 
+
 int main() {
     int i = 11322488;
     std::cout << solution(i);
