@@ -1,4 +1,0 @@
-#ifndef URLSHORTENER_H
-#define URLSHORTENER_H
-
-#endif // URLSHORTENER_H
