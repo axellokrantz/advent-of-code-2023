@@ -21,7 +21,7 @@ bool compareCount(const std::string& color, const int& count){
        return false;
    }
    return true;
-   
+
 }
 
 bool isGamePossible(std::vector<std::string> rounds){
@@ -86,4 +86,4 @@ int main() {
 
    std::cout << "Sum of possible game IDs: " << sum << std::endl;
    return 0;
-}
+}   
