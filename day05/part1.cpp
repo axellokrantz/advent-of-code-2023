@@ -46,6 +46,8 @@ int main() {
     std::vector<long long> seeds;
     std::vector<std::vector<Mapping>> all_mappings(7);
     std::getline(input_file, line);
+
+    
     std::stringstream ss(line.substr(line.find(":") + 1));
     long long seed_value;
     while (ss >> seed_value) {
