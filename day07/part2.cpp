@@ -10,13 +10,51 @@ struct Hand {
     int bid;
 };
 
-long long calculateScore(std::string hand) {
-    long long score = 0;
+ std::map<char, int> card_values = {
+        {'A', 13}, {'K', 12}, {'Q', 11}, {'T', 10},
+        {'9', 9},  {'8', 8},  {'7', 7},  {'6', 6},  {'5', 5},
+        {'4', 4},  {'3', 3},  {'2', 2}, {'J', 1}};
+
+std::map<char, int> addJokers(std::string hand){
     std::map<char, int> map;
+    int number_of_jokers = 0;
     for (auto& c : hand) {
-        map[c]++;
+        if(c != 'J'){
+            map[c]++;
+        }
+        else{
+            number_of_jokers++;
+        }
     }
 
+    char best_card = ' ';
+    int highest_freq = 0;
+    int highest_value = 0;
+
+    for(auto& pair : map){
+        char card = pair.first;
+        int freq = pair.second;
+        int value = card_values[card];
+
+        if(highest_freq < freq || (highest_freq == freq && value > highest_value) ){
+            best_card = card;
+            highest_freq = freq;
+            highest_value = value;
+        }    
+    }
+
+    while(number_of_jokers > 0){
+        map[best_card]++;
+        number_of_jokers--;
+    }
+    return map;
+}
+
+long long calculateScore(std::string hand) {
+
+    long long score = 0;
+    std::map<char, int> map = addJokers(hand);
+    
     if (map.size() == 1) {
         score = 60000000000;
     } else if (map.size() == 2) {
@@ -48,11 +86,6 @@ long long calculateScore(std::string hand) {
     } else {
         score = 0;
     }
-
-    std::map<char, int> card_values = {
-        {'A', 14}, {'K', 13}, {'Q', 12}, {'J', 11}, {'T', 10},
-        {'9', 9},  {'8', 8},  {'7', 7},  {'6', 6},  {'5', 5},
-        {'4', 4},  {'3', 3},  {'2', 2}};
 
     long long multiplier = 100000000;
     for (int i = 0; i < hand.length(); i++) {
